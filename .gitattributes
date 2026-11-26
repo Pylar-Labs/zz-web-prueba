@@ -1,0 +1,4 @@
+# Documentos generados del contrato (npm run schema:export): siempre con LF, también en Windows con
+# core.autocrlf=true. Solo estos dos archivos; el resto del proyecto no cambia (spec 005).
+docs/site-schema.md text eol=lf
+docs/site.schema.json text eol=lf

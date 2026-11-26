@@ -1,0 +1,32 @@
+{
+  "name": "Estudio Aurora",
+  "tagline": "Diseño que se nota",
+  "description": "Estudio de diseño para pequeños negocios que quieren verse bien.",
+  "hero": {
+    "headline": "Tu negocio, mejor presentado",
+    "subheadline": "Diseñamos identidad y materiales para que tus clientes te recuerden.",
+    "ctaPrimary": {
+      "label": "Hablemos",
+      "href": "#contacto"
+    }
+  },
+  "about": {
+    "title": "Quiénes somos",
+    "body": "Somos un equipo pequeño con ganas de ayudarte a crecer con un diseño cuidado.",
+    "stats": [
+      { "value": "1234567890", "label": "Clientes felices en todo el país entero!" },
+      { "value": "12 345 678", "label": "ÑandúCaféSinEspaciosÑandúCaféSinEspacios" }
+    ]
+  },
+  "contact": {
+    "whatsapp": "5491112345678",
+    "email": "hola@estudioaurora.com"
+  },
+  "services": [
+    {
+      "icon": "Star",
+      "title": "Identidad visual",
+      "description": "Logo, paleta y tipografías para tu marca."
+    }
+  ]
+}

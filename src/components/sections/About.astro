@@ -1,0 +1,91 @@
+---
+import { siteConfig } from "@/content/site.config";
+
+const { about } = siteConfig;
+
+// Las cifras salen solo de los datos: sin cifras no hay tarjeta (ni sus cuadrados decorativos).
+const stats = about.stats ?? [];
+const [mainStat, ...otherStats] = stats;
+const hasStats = mainStat !== undefined;
+
+// El tamaño de la letra se adapta al largo del valor (en caracteres que ve una persona) para que
+// quepa en una línea a 375 px; a partir de `sm` hay más espacio. Las clases van escritas completas
+// para que Tailwind las encuentre.
+const segmenter = new Intl.Segmenter(undefined, { granularity: "grapheme" });
+const length = (text: string) => [...segmenter.segment(text)].length;
+
+function mainValueSize(text: string) {
+  const n = length(text);
+  if (n <= 7) return "text-6xl";
+  if (n === 8) return "text-5xl sm:text-6xl";
+  if (n === 9) return "text-5xl";
+  return "text-4xl sm:text-5xl";
+}
+
+function otherValueSize(text: string) {
+  const n = length(text);
+  if (n <= 4) return "text-3xl";
+  if (n <= 6) return "text-2xl sm:text-3xl";
+  if (n <= 8) return "text-xl sm:text-3xl";
+  return "text-base sm:text-2xl";
+}
+
+// Con una sola cifra pequeña, se centra con el ancho de su contenido (con un mínimo) en vez de dejar una celda vacía.
+// No lleva un porcentaje de ancho: el contenedor se encoge a su contenido y el porcentaje salía de un ancho minúsculo.
+const singleOther = otherStats.length === 1;
+---
+
+<section id="nosotros" class="py-24 bg-muted/30">
+  <div class="container mx-auto max-w-6xl px-4">
+    <div class:list={["grid gap-12", hasStats && "lg:grid-cols-2 lg:items-center"]}>
+      <div>
+        <h2 class="mb-6 text-4xl font-bold tracking-tight text-foreground">
+          {about.title}
+        </h2>
+        <p class="mb-8 text-lg leading-relaxed text-muted-foreground">
+          {about.body}
+        </p>
+        {about.highlights.length > 0 && (
+          <div class="flex flex-wrap gap-3">
+            {
+              about.highlights.map((item) => (
+                <span class="rounded-full bg-primary/10 px-4 py-2 text-sm font-semibold text-primary">
+                  {item}
+                </span>
+              ))
+            }
+          </div>
+        )}
+      </div>
+
+      {hasStats && (
+        <div class="relative">
+          {/* Sin overflow-hidden: así el alto mínimo automático hace crecer el recuadro cuando el contenido no cabe en el cuadrado. */}
+          <div class="aspect-square rounded-2xl bg-gradient-to-br from-primary/20 to-accent/40 flex items-center justify-center">
+            <div class="text-center p-8">
+              <p class={`${mainValueSize(mainStat.value)} font-extrabold text-primary [overflow-wrap:anywhere]`}>{mainStat.value}</p>
+              <p class="mt-2 text-lg font-medium text-foreground [overflow-wrap:anywhere]">{mainStat.label}</p>
+              {otherStats.length > 0 && (
+                <div class="mt-6 grid grid-cols-2 gap-4 text-center">
+                  {otherStats.map((stat) => (
+                    <div
+                      class:list={[
+                        "rounded-xl bg-background/70 p-4 shadow-sm",
+                        singleOther && "col-span-2 min-w-28 justify-self-center",
+                      ]}
+                    >
+                      <p class={`${otherValueSize(stat.value)} font-bold text-secondary [overflow-wrap:anywhere]`}>{stat.value}</p>
+                      <p class="text-xs text-muted-foreground [overflow-wrap:anywhere]">{stat.label}</p>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+          <div class="absolute -bottom-4 -right-4 h-24 w-24 rounded-2xl bg-secondary/20 -z-10" />
+          <div class="absolute -top-4 -left-4 h-16 w-16 rounded-xl bg-primary/10 -z-10" />
+        </div>
+      )}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,31 @@
+---
+import { siteConfig } from "@/content/site.config";
+import { renderIcon } from "@/lib/icons";
+import type { IconName } from "@/lib/icons";
+---
+
+<section id="servicios" class="py-24 bg-background">
+  <div class="container mx-auto max-w-6xl px-4">
+    <div class="mb-12 text-center">
+      <h2 class="text-4xl font-bold tracking-tight text-foreground break-words">{siteConfig.sections.services.title}</h2>
+      {siteConfig.sections.services.subtitle && (
+        <p class="mt-4 text-lg text-muted-foreground break-words">{siteConfig.sections.services.subtitle}</p>
+      )}
+    </div>
+
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        siteConfig.services.map((service) => (
+          <div class="group rounded-2xl border border-border bg-card p-6 shadow-sm transition-all hover:shadow-md hover:border-primary/30 hover:-translate-y-1">
+            <div
+              class="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary"
+              set:html={renderIcon(service.icon as IconName, 24)}
+            />
+            <h3 class="mb-2 text-lg font-semibold text-foreground">{service.title}</h3>
+            <p class="text-sm leading-relaxed text-muted-foreground">{service.description}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

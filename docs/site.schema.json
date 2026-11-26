@@ -1,0 +1,389 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "language": {
+      "description": "Idioma de la interfaz fija de la web (opcional): `es` (español), `en` (inglés) o `pt` (portugués de Brasil), escritos exactos. Por defecto `es`. Cambia el menú, el formulario, los botones, el pie, las tarjetas de contacto, los `aria-label`, los mensajes de WhatsApp, los títulos neutros de sección y la etiqueta por defecto del botón de producto. No traduce lo que escribe el cliente.",
+      "type": "string",
+      "enum": [
+        "es",
+        "en",
+        "pt"
+      ]
+    },
+    "name": {
+      "type": "string",
+      "description": "Nombre del negocio. Máximo 80 caracteres, una sola línea."
+    },
+    "tagline": {
+      "type": "string",
+      "description": "Eslogan del negocio. Máximo 80 caracteres, una sola línea."
+    },
+    "description": {
+      "type": "string",
+      "description": "Descripción del negocio (también para buscadores). Máximo 500 caracteres."
+    },
+    "hero": {
+      "type": "object",
+      "properties": {
+        "headline": {
+          "type": "string",
+          "description": "Titular principal de la web. Máximo 80 caracteres, una sola línea."
+        },
+        "subheadline": {
+          "type": "string",
+          "description": "Subtítulo bajo el titular. Máximo 500 caracteres."
+        },
+        "ctaPrimary": {
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string",
+              "description": "Texto del botón. Máximo 40 caracteres, una sola línea."
+            },
+            "href": {
+              "type": "string",
+              "description": "Destino del botón: URL completa http/https o ancla interna en minúsculas (por ejemplo #contacto) a una sección que exista con estos datos."
+            }
+          },
+          "required": [
+            "label",
+            "href"
+          ],
+          "additionalProperties": false,
+          "description": "Botón principal (obligatorio)."
+        },
+        "ctaSecondary": {
+          "description": "Botón secundario (opcional). Si se incluye, lleva etiqueta y destino.",
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string",
+              "description": "Texto del botón. Máximo 40 caracteres, una sola línea."
+            },
+            "href": {
+              "type": "string",
+              "description": "Destino del botón: URL completa http/https o ancla interna en minúsculas (por ejemplo #contacto) a una sección que exista con estos datos."
+            }
+          },
+          "required": [
+            "label",
+            "href"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "headline",
+        "subheadline",
+        "ctaPrimary"
+      ],
+      "additionalProperties": false,
+      "description": "Sección inicial de la web (obligatoria)."
+    },
+    "about": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Título de la sección \"Quiénes somos\". Máximo 80 caracteres."
+        },
+        "body": {
+          "type": "string",
+          "description": "Texto de la sección \"Quiénes somos\". Máximo 500 caracteres."
+        },
+        "stats": {
+          "description": "Cifras de \"Quiénes somos\" (opcional): hasta 3, la primera se muestra destacada. Sin cifras no se muestra la tarjeta de cifras. Lista vacía equivale a ausente. Nunca se muestra una cifra que no esté aquí.",
+          "maxItems": 3,
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "string",
+                "description": "Valor de la cifra, por ejemplo \"+14\", \"100%\" o \"24/7\". Máximo 10 caracteres, una sola línea. Obligatorio junto con `label`."
+              },
+              "label": {
+                "type": "string",
+                "description": "Descripción de la cifra, por ejemplo \"años de experiencia\". Máximo 40 caracteres, una sola línea. Obligatoria junto con `value`."
+              }
+            },
+            "required": [
+              "value",
+              "label"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "highlights": {
+          "description": "Destacados breves (opcional): hasta 5, de 40 caracteres como máximo cada uno. Lista vacía equivale a ausente.",
+          "maxItems": 5,
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "title",
+        "body"
+      ],
+      "additionalProperties": false,
+      "description": "Sección \"Quiénes somos\" (obligatoria)."
+    },
+    "contact": {
+      "type": "object",
+      "properties": {
+        "whatsapp": {
+          "type": "string",
+          "description": "WhatsApp de contacto: solo dígitos con código de país (de 8 a 15), sin +, espacios ni guiones. Lo usan el botón flotante, el contacto y las consultas de cada producto."
+        },
+        "email": {
+          "description": "Email de contacto. Formato válido, máximo 254 caracteres. Obligatorio si no hay teléfono.",
+          "type": "string"
+        },
+        "phone": {
+          "description": "Teléfono de contacto. De 8 a 15 dígitos; admite +, espacios, guiones y paréntesis; se muestra tal cual. Obligatorio si no hay email.",
+          "type": "string"
+        },
+        "address": {
+          "description": "Dirección (opcional). Máximo 150 caracteres, una sola línea.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "whatsapp"
+      ],
+      "additionalProperties": false,
+      "description": "Datos de contacto (obligatorio): WhatsApp y al menos un email o un teléfono."
+    },
+    "social": {
+      "description": "Redes sociales (opcional). Solo Instagram y Facebook.",
+      "type": "object",
+      "properties": {
+        "instagram": {
+          "description": "URL de Instagram (opcional). http o https, hasta 2000 caracteres, sin usuario ni contraseña.",
+          "type": "string"
+        },
+        "facebook": {
+          "description": "URL de Facebook (opcional). http o https, hasta 2000 caracteres, sin usuario ni contraseña.",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "services": {
+      "minItems": 1,
+      "maxItems": 8,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "icon": {
+            "type": "string",
+            "description": "Ícono del servicio. Uno de: ShoppingBag, Truck, Gift, Leaf, Star, Phone, Mail, MapPin, MessageCircle, Instagram, Facebook."
+          },
+          "title": {
+            "type": "string",
+            "description": "Título del servicio. Máximo 80 caracteres."
+          },
+          "description": {
+            "type": "string",
+            "description": "Descripción del servicio. Máximo 500 caracteres."
+          }
+        },
+        "required": [
+          "icon",
+          "title",
+          "description"
+        ],
+        "additionalProperties": false
+      },
+      "description": "Servicios que ofrece el negocio: de 1 a 8."
+    },
+    "testimonials": {
+      "description": "Testimonios (opcional): hasta 9. Lista vacía equivale a ausente: la sección no se muestra.",
+      "maxItems": 9,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Nombre de quien opina. Máximo 80 caracteres."
+          },
+          "role": {
+            "description": "Rol o relación con el negocio (opcional). Máximo 40 caracteres.",
+            "type": "string"
+          },
+          "text": {
+            "type": "string",
+            "description": "Texto del testimonio. Máximo 500 caracteres."
+          },
+          "rating": {
+            "type": "number",
+            "description": "Valoración: número entero de 1 a 5."
+          }
+        },
+        "required": [
+          "name",
+          "text",
+          "rating"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "products": {
+      "description": "Productos del catálogo (opcional): hasta 60. Lista vacía equivale a ausente: no hay catálogo.",
+      "maxItems": 60,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Identificador único del producto: solo minúsculas, números y guiones, de 1 a 60 caracteres."
+          },
+          "name": {
+            "type": "string",
+            "description": "Nombre del producto. Máximo 80 caracteres."
+          },
+          "description": {
+            "type": "string",
+            "description": "Descripción del producto. Máximo 500 caracteres."
+          },
+          "image": {
+            "type": "string",
+            "description": "URL de la imagen del producto (http o https)."
+          },
+          "price": {
+            "description": "Precio: número mayor que 0, hasta 2 decimales, máximo 99.999.999,99. Obligatorio si el catálogo muestra precios. Se muestra con el formato estándar de la moneda del catálogo (`productGridConfig.currency`, por defecto ARS) y del idioma de la web, con los decimales de esa moneda. En CLP y COP no admite decimales.",
+            "type": "number"
+          },
+          "category": {
+            "description": "Categoría (opcional). Máximo 40 caracteres. Obligatoria si el catálogo agrupa por categoría; hasta 12 distintas y escritas siempre igual.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "description",
+          "image"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "productGridConfig": {
+      "description": "Configuración del catálogo (opcional). Sin productos no tiene efecto. El catálogo usa siempre el WhatsApp de contacto.",
+      "type": "object",
+      "properties": {
+        "showPrice": {
+          "description": "Mostrar los precios (por defecto sí).",
+          "type": "boolean"
+        },
+        "currency": {
+          "description": "Moneda de los precios del catálogo (opcional): ARS, USD, EUR, BRL, MXN, CLP, COP, PEN o UYU, escritas exactas. Por defecto ARS. CLP y COP no usan decimales. Sin productos no tiene efecto.",
+          "type": "string",
+          "enum": [
+            "ARS",
+            "USD",
+            "EUR",
+            "BRL",
+            "MXN",
+            "CLP",
+            "COP",
+            "PEN",
+            "UYU"
+          ]
+        },
+        "ctaLabel": {
+          "description": "Texto del botón de consulta de cada producto. Máximo 40 caracteres. Por defecto, según el idioma: \"Consultar por WhatsApp\" (es), \"Ask on WhatsApp\" (en), \"Consultar pelo WhatsApp\" (pt).",
+          "type": "string"
+        },
+        "groupByCategory": {
+          "description": "Agrupar los productos por categoría (por defecto no).",
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "sections": {
+      "description": "Títulos y subtítulos de las secciones de servicios, productos, testimonios y contacto (opcional). Sin título cada sección muestra uno neutro; sin subtítulo no se muestra ninguno.",
+      "type": "object",
+      "properties": {
+        "services": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "description": "Título de la sección de servicios (opcional). Máximo 80 caracteres, una sola línea. Por defecto, según el idioma: \"Servicios\" (es), \"Services\" (en), \"Serviços\" (pt).",
+              "type": "string"
+            },
+            "subtitle": {
+              "description": "Subtítulo de la sección de servicios (opcional). Máximo 200 caracteres, una sola línea. Sin subtítulo no se muestra ninguno.",
+              "type": "string"
+            }
+          },
+          "additionalProperties": false,
+          "description": "Título y subtítulo de la sección de servicios (opcional). Si la sección no se muestra, no tiene efecto."
+        },
+        "products": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "description": "Título de la sección de productos (opcional). Máximo 80 caracteres, una sola línea. Por defecto, según el idioma: \"Productos\" (es), \"Products\" (en), \"Produtos\" (pt).",
+              "type": "string"
+            },
+            "subtitle": {
+              "description": "Subtítulo de la sección de productos (opcional). Máximo 200 caracteres, una sola línea. Sin subtítulo no se muestra ninguno.",
+              "type": "string"
+            }
+          },
+          "additionalProperties": false,
+          "description": "Título y subtítulo de la sección de productos (opcional). Si la sección no se muestra, no tiene efecto."
+        },
+        "testimonials": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "description": "Título de la sección de testimonios (opcional). Máximo 80 caracteres, una sola línea. Por defecto, según el idioma: \"Testimonios\" (es), \"Testimonials\" (en), \"Depoimentos\" (pt).",
+              "type": "string"
+            },
+            "subtitle": {
+              "description": "Subtítulo de la sección de testimonios (opcional). Máximo 200 caracteres, una sola línea. Sin subtítulo no se muestra ninguno.",
+              "type": "string"
+            }
+          },
+          "additionalProperties": false,
+          "description": "Título y subtítulo de la sección de testimonios (opcional). Si la sección no se muestra, no tiene efecto."
+        },
+        "contact": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "description": "Título de la sección de contacto (opcional). Máximo 80 caracteres, una sola línea. Por defecto, según el idioma: \"Contacto\" (es), \"Contact\" (en), \"Contato\" (pt).",
+              "type": "string"
+            },
+            "subtitle": {
+              "description": "Subtítulo de la sección de contacto (opcional). Máximo 200 caracteres, una sola línea. Sin subtítulo no se muestra ninguno.",
+              "type": "string"
+            }
+          },
+          "additionalProperties": false,
+          "description": "Título y subtítulo de la sección de contacto (opcional). Si la sección no se muestra, no tiene efecto."
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "name",
+    "tagline",
+    "description",
+    "hero",
+    "about",
+    "contact",
+    "services"
+  ],
+  "additionalProperties": false
+}

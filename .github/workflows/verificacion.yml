@@ -1,0 +1,102 @@
+# Verificación en Linux (spec 009): instala, revisa tipos, ejecuta los tests y construye las 16 variantes
+# de la web con Node 22.23.4 (la mínima del proyecto) y con la última 24.x (la del servicio).
+# Solo informa: no bloquea la fusión. Un rojo se investiga antes de fusionar (ver AGENTS.md).
+# Las acciones van fijadas por commit exacto, con su versión en el comentario; hay que actualizarlas a mano.
+#
+# Regla (spec 010): todos los pasos llevan `id`, en inglés, salvo el último («Resumen del resultado»), que no puede
+# aparecer en su propio resultado. Cada `id` y su nombre deben estar, en el mismo orden, en la tabla STEP_NAMES de
+# scripts/ci-verify.mjs; un test (scripts/ci-verify.test.mjs) lo comprueba.
+name: Verificación en Linux
+
+on:
+  pull_request:
+    branches: [master]
+  push:
+    branches: [master]
+
+# Una ejecución por rama o pull request. Se cancela la anterior solo si es un pull request: las de master nunca.
+concurrency:
+  group: verificacion-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+# La verificación solo lee el repositorio.
+permissions:
+  contents: read
+
+jobs:
+  verificar:
+    name: Linux · Node ${{ matrix.node }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    strategy:
+      # Si falla una versión de Node, la otra sigue.
+      fail-fast: false
+      matrix:
+        node: ["22.23.4", "24"]
+    steps:
+      - name: Descargar el código
+        id: checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Instalar Node
+        id: setup-node
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Versiones usadas
+        id: versions
+        run: |
+          echo "Node $(node -v) · npm $(npm -v) · $(uname -sm)"
+          {
+            echo "### Versiones usadas"
+            echo
+            echo "Node $(node -v) · npm $(npm -v) · $(uname -sm)"
+            echo
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Instalar dependencias
+        id: install
+        run: npm ci --no-audit --no-fund
+
+      # Los pasos de comprobación siguen aunque falle uno anterior, para ver todo el resultado de una vez.
+      - name: Tests de contrato
+        id: contract-tests
+        if: ${{ !cancelled() }}
+        run: npm run test:schema
+
+      - name: Tests del comparador de builds
+        id: comparator-tests
+        if: ${{ !cancelled() }}
+        run: node --test scripts/compare-builds.test.mjs
+
+      - name: Tests de tipos
+        id: type-tests
+        if: ${{ !cancelled() }}
+        run: npm run test:typecheck
+
+      - name: Construir las 16 variantes
+        id: builds
+        if: ${{ !cancelled() }}
+        # Los builds se guardan fuera del repositorio: la revisión de tipos recorre todo el árbol.
+        run: node scripts/ci-verify.mjs --out "$RUNNER_TEMP/salida"
+
+      - name: Guardar los builds
+        id: upload
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: builds-linux-node-${{ matrix.node }}
+          path: ${{ runner.temp }}/salida
+          retention-days: 1
+          if-no-files-found: warn
+
+      # Último paso: escribe en el resumen del trabajo el resultado de cada paso y nombra los que fallaron.
+      - name: Resumen del resultado
+        if: ${{ !cancelled() }}
+        env:
+          NODE_VERSION: ${{ matrix.node }}
+          STEPS_JSON: ${{ toJSON(steps) }}
+        run: node scripts/ci-verify.mjs --resumen-pasos

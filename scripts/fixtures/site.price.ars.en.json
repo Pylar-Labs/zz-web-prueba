@@ -1,0 +1,55 @@
+{
+  "language": "en",
+  "name": "Estudio Aurora",
+  "tagline": "Diseño que se nota",
+  "description": "Estudio de diseño para pequeños negocios que quieren verse bien.",
+  "hero": {
+    "headline": "Tu negocio, mejor presentado",
+    "subheadline": "Diseñamos identidad y materiales para que tus clientes te recuerden.",
+    "ctaPrimary": {
+      "label": "Hablemos",
+      "href": "#contacto"
+    }
+  },
+  "about": {
+    "title": "Quiénes somos",
+    "body": "Somos un equipo pequeño con ganas de ayudarte a crecer con un diseño cuidado."
+  },
+  "contact": {
+    "whatsapp": "5491112345678",
+    "email": "hola@estudioaurora.com"
+  },
+  "services": [
+    {
+      "icon": "Star",
+      "title": "Identidad visual",
+      "description": "Logo, paleta y tipografías para tu marca."
+    }
+  ],
+  "products": [
+    {
+      "id": "p1",
+      "name": "Lowest price product",
+      "description": "Sample product to check the price format.",
+      "image": "https://placehold.co/400x300",
+      "price": 0.01
+    },
+    {
+      "id": "p2",
+      "name": "Typical price product",
+      "description": "Sample product to check the price format.",
+      "image": "https://placehold.co/400x300",
+      "price": 1800.5
+    },
+    {
+      "id": "p3",
+      "name": "Highest price product",
+      "description": "Sample product to check the price format.",
+      "image": "https://placehold.co/400x300",
+      "price": 99999999.99
+    }
+  ],
+  "productGridConfig": {
+    "currency": "ARS"
+  }
+}

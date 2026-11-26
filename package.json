@@ -1,0 +1,40 @@
+{
+  "name": "template-landing",
+  "type": "module",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=22.23.4"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "prebuild": "node scripts/prebuild.mjs",
+    "typecheck": "node scripts/typecheck.mjs",
+    "test:typecheck": "node --test scripts/typecheck.test.mjs",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "validate": "node --experimental-strip-types --disable-warning=ExperimentalWarning scripts/validate-site.mjs",
+    "test:schema": "node --experimental-strip-types --disable-warning=ExperimentalWarning --test scripts/site-schema.test.mjs scripts/site-text-fields.test.mjs scripts/site-i18n.test.mjs scripts/text-compare.test.mjs scripts/site-currency.test.mjs scripts/ci-verify.test.mjs scripts/site-errors.test.mjs",
+    "verify:ci": "node scripts/ci-verify.mjs",
+    "schema:export": "node --experimental-strip-types --disable-warning=ExperimentalWarning scripts/export-schema.mjs"
+  },
+  "dependencies": {
+    "@astrojs/react": "^7.1.9",
+    "@tailwindcss/vite": "^4.3.1",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "astro": "^7.4.12",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^1.18.0",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "tailwind-merge": "^3.6.0",
+    "tailwindcss": "^4.3.1"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.12",
+    "@types/node": "^22.20.5",
+    "typescript": "^6.0.3"
+  }
+}

@@ -1,0 +1,44 @@
+---
+import { siteConfig } from "@/content/site.config";
+import { buttonVariants } from "@/components/ui/button";
+
+const { hero } = siteConfig;
+---
+
+<section
+  id="inicio"
+  class="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-primary/10 via-background to-accent/30"
+>
+  <div class="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(var(--primary),0.15),transparent)]" />
+
+  <div class="container mx-auto max-w-6xl px-4 py-32 text-center">
+    <p class="mb-4 inline-block rounded-full bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary">
+      {siteConfig.tagline}
+    </p>
+    <h1 class="mb-6 text-5xl font-extrabold leading-tight tracking-tight text-foreground md:text-6xl lg:text-7xl">
+      {hero.headline}
+    </h1>
+    <p class="mx-auto mb-10 max-w-2xl text-lg text-muted-foreground md:text-xl">
+      {hero.subheadline}
+    </p>
+    <div class="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+      <a href={hero.ctaPrimary.href} class={buttonVariants({ size: "lg" })}>
+        {hero.ctaPrimary.label}
+      </a>
+      {hero.ctaSecondary && (
+        <a
+          href={hero.ctaSecondary.href}
+          class={buttonVariants({ variant: "outline", size: "lg" })}
+        >
+          {hero.ctaSecondary.label}
+        </a>
+      )}
+    </div>
+  </div>
+
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+    <svg class="h-6 w-6 text-muted-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+    </svg>
+  </div>
+</section>

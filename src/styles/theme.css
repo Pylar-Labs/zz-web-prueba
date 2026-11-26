@@ -1,0 +1,47 @@
+@layer base {
+  :root {
+    /* ── Personalizá estas variables para cambiar la paleta de marca ── */
+    --background: 0 0% 100%;
+    --foreground: 210 11% 15%;
+
+    --primary: 155 60% 35%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 36 80% 50%;
+    --secondary-foreground: 0 0% 100%;
+
+    --accent: 155 40% 92%;
+    --accent-foreground: 155 60% 25%;
+
+    --muted: 210 20% 96%;
+    --muted-foreground: 210 10% 45%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 210 11% 15%;
+
+    --border: 210 20% 88%;
+    --input: 210 20% 88%;
+    --ring: 155 60% 35%;
+
+    --radius: 0.5rem;
+  }
+}
+
+@theme inline {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --radius: var(--radius);
+}

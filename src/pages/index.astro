@@ -1,0 +1,161 @@
+---
+import "../styles/global.css";
+import { siteConfig } from "@/content/site.config";
+import Hero from "@/components/sections/Hero.astro";
+import About from "@/components/sections/About.astro";
+import Services from "@/components/sections/Services.astro";
+import Testimonials from "@/components/sections/Testimonials.astro";
+import ProductGrid from "@/components/sections/ProductGrid.astro";
+import Contact from "@/components/sections/Contact.astro";
+import WhatsAppFloat from "@/components/sections/WhatsAppFloat.astro";
+
+const { name, social, products, testimonials, ui } = siteConfig;
+
+// El menú solo enlaza a las secciones que existen con estos datos. Los textos salen del idioma de la web.
+const navLinks = [
+  { label: ui.nav.home, href: "#inicio" },
+  { label: ui.nav.about, href: "#nosotros" },
+  { label: ui.nav.services, href: "#servicios" },
+  ...(products.length > 0 ? [{ label: ui.nav.products, href: "#productos" }] : []),
+  ...(testimonials.length > 0 ? [{ label: ui.nav.testimonials, href: "#testimonios" }] : []),
+  { label: ui.nav.contact, href: "#contacto" },
+];
+---
+
+<html lang={ui.htmlLang}>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={siteConfig.description} />
+    <title>{name}</title>
+  </head>
+
+  <body class="bg-background text-foreground antialiased">
+
+    <!-- Header -->
+    <header class="fixed top-0 z-40 w-full border-b border-border/40 bg-background/80 backdrop-blur-md">
+      <div class="container mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4">
+        <a href="#inicio" title={name} class="min-w-0 truncate text-xl font-bold text-primary">
+          {name}
+        </a>
+        <nav class="hidden shrink-0 items-center gap-6 lg:flex">
+          {
+            navLinks.map((link) => (
+              <a
+                href={link.href}
+                class="whitespace-nowrap text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+              >
+                {link.label}
+              </a>
+            ))
+          }
+        </nav>
+        <a
+          href="#contacto"
+          class="hidden shrink-0 rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90 md:ml-auto md:block lg:ml-0"
+        >
+          {ui.nav.contact}
+        </a>
+
+        <!-- Mobile menu button -->
+        <button
+          id="menu-btn"
+          class="flex shrink-0 flex-col gap-1.5 p-2 lg:hidden"
+          aria-label={ui.aria.openMenu}
+        >
+          <span class="h-0.5 w-6 bg-foreground transition-all" />
+          <span class="h-0.5 w-6 bg-foreground transition-all" />
+          <span class="h-0.5 w-6 bg-foreground transition-all" />
+        </button>
+      </div>
+
+      <!-- Mobile nav -->
+      <div
+        id="mobile-menu"
+        class="hidden border-t border-border bg-background px-4 py-4 lg:hidden"
+      >
+        <nav class="flex flex-col gap-4">
+          {
+            navLinks.map((link) => (
+              <a
+                href={link.href}
+                class="text-sm font-medium text-muted-foreground hover:text-foreground mobile-link"
+              >
+                {link.label}
+              </a>
+            ))
+          }
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <Hero />
+      <About />
+      <Services />
+      <ProductGrid />
+      <Testimonials />
+      <Contact />
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-border bg-muted/30 py-10">
+      <div class="container mx-auto max-w-6xl px-4">
+        <div class="flex flex-col items-center justify-between gap-4 md:flex-row">
+          <p class="min-w-0 wrap-anywhere text-sm font-semibold text-foreground">{name}</p>
+          <p class="min-w-0 wrap-anywhere text-xs text-muted-foreground">
+            © {new Date().getFullYear()} {name}. {ui.footer.rights}
+          </p>
+          {(social.instagram || social.facebook) && (
+          <div class="flex gap-4">
+            {
+              social.instagram && (
+                <a
+                  href={social.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram"
+                  class="text-muted-foreground hover:text-foreground"
+                >
+                  <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                  </svg>
+                </a>
+              )
+            }
+            {
+              social.facebook && (
+                <a
+                  href={social.facebook}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Facebook"
+                  class="text-muted-foreground hover:text-foreground"
+                >
+                  <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                  </svg>
+                </a>
+              )
+            }
+          </div>
+          )}
+        </div>
+      </div>
+    </footer>
+
+    <WhatsAppFloat />
+
+    <script>
+      const btn = document.getElementById("menu-btn");
+      const menu = document.getElementById("mobile-menu");
+      btn?.addEventListener("click", () => menu?.classList.toggle("hidden"));
+      document.querySelectorAll(".mobile-link").forEach((link) =>
+        link.addEventListener("click", () => menu?.classList.add("hidden"))
+      );
+    </script>
+  </body>
+</html>
