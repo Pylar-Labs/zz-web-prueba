@@ -9,3 +9,4 @@ export default defineConfig({
     plugins: [tailwindcss()],
   }
 });
+throw new Error('build roto de prueba')
