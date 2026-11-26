@@ -1,165 +1,61 @@
 {
-  "name": "Sabores del Norte",
-  "tagline": "Productos artesanales con alma regional",
-  "description": "Somos una empresa familiar dedicada a la elaboración de productos artesanales de la región. Calidad y tradición en cada producto.",
+  "language": "es",
+  "name": "Estudio de Prueba",
+  "tagline": "Entrega real del panel",
+  "description": "Sitio de prueba para verificar la publicación de punta a punta.",
   "hero": {
-    "headline": "Productos artesanales que conquistan el paladar",
-    "subheadline": "Descubrí nuestra selección de productos regionales elaborados con ingredientes naturales y procesos tradicionales.",
+    "headline": "Publicado desde el panel",
+    "subheadline": "Este texto llegó por un commit del panel al repositorio de la web.",
     "ctaPrimary": {
-      "label": "Ver productos",
-      "href": "#productos"
-    },
-    "ctaSecondary": {
       "label": "Contactanos",
       "href": "#contacto"
     }
   },
   "about": {
     "title": "Quiénes somos",
-    "body": "Desde 2010, Sabores del Norte nació con la misión de llevar lo mejor de la cocina regional a cada hogar argentino. Trabajamos con productores locales, respetando las recetas de siempre y sumando el cuidado que solo da el trabajo artesanal.",
-    "highlights": [
-      "Ingredientes locales",
-      "Recetas de siempre",
-      "Hecho en Jujuy"
-    ],
+    "body": "Un negocio de prueba creado para verificar la entrega real.",
     "stats": [
       {
-        "value": "14+",
-        "label": "años de experiencia"
-      },
-      {
-        "value": "500+",
-        "label": "clientes satisfechos"
-      },
-      {
-        "value": "100%",
-        "label": "artesanal"
+        "label": "prueba real",
+        "value": "+1"
       }
+    ],
+    "highlights": [
+      "Validado con el contrato 2.3"
     ]
   },
   "contact": {
-    "email": "hola@saboresdelnorte.com.ar",
-    "phone": "+54 9 11 1234-5678",
-    "address": "San Salvador de Jujuy, Argentina",
-    "whatsapp": "5491112345678"
-  },
-  "social": {
-    "instagram": "https://instagram.com/saboresdelnorte",
-    "facebook": "https://facebook.com/saboresdelnorte"
+    "whatsapp": "5491112345678",
+    "email": "prueba@example.com",
+    "phone": "+54 11 1234-5678"
   },
   "services": [
     {
-      "icon": "ShoppingBag",
-      "title": "Venta al por mayor",
-      "description": "Precios especiales para revendedores, dietéticas y almacenes de la región."
-    },
-    {
-      "icon": "Truck",
-      "title": "Envíos a todo el país",
-      "description": "Despachamos por correo y transporte a cualquier punto de Argentina."
-    },
-    {
-      "icon": "Gift",
-      "title": "Cajas regalo",
-      "description": "Armamos sets personalizados para empresas, eventos y fechas especiales."
-    },
-    {
-      "icon": "Leaf",
-      "title": "Productos naturales",
-      "description": "Sin conservantes artificiales. Elaborados con ingredientes de origen local."
+      "icon": "Star",
+      "title": "Servicio de prueba",
+      "description": "Descripción del servicio."
     }
   ],
   "testimonials": [
     {
-      "name": "Laura Giménez",
-      "role": "Cliente frecuente",
-      "text": "Los dulces son increíbles, lo mismo que cuando los hacía mi abuela. ¡Los recomiendo a todos!",
+      "name": "Ana",
+      "role": "Clienta",
+      "text": "Muy buena experiencia.",
       "rating": 5
-    },
-    {
-      "name": "Carlos Mendoza",
-      "role": "Dueño de dietética",
-      "text": "Trabajo con ellos hace 3 años. Excelente calidad y muy buen trato para mayoristas.",
-      "rating": 5
-    },
-    {
-      "name": "Sofía Ramos",
-      "role": "Compradora online",
-      "text": "El envío llegó rápido y el packaging muy cuidado. Las mermeladas son una delicia.",
-      "rating": 4
     }
   ],
   "products": [
     {
-      "id": "dulce-cayote",
-      "name": "Dulce de Cayote",
-      "price": 1800,
-      "description": "Receta tradicional jujeña. Frasco de 450g.",
-      "image": "https://placehold.co/400x300/e8f5e9/2e7d32?text=Dulce+de+Cayote",
-      "category": "Dulces y conservas"
-    },
-    {
-      "id": "mermelada-tuna",
-      "name": "Mermelada de Tuna",
-      "price": 1500,
-      "description": "Elaborada con tuna fresca de la quebrada. Frasco de 350g.",
-      "image": "https://placehold.co/400x300/fce4ec/c62828?text=Mermelada+de+Tuna",
-      "category": "Dulces y conservas"
-    },
-    {
-      "id": "llajua-seca",
-      "name": "Llajua Seca",
-      "price": 900,
-      "description": "Mezcla de especias para la salsa picante norteña. Bolsa 80g.",
-      "image": "https://placehold.co/400x300/fff3e0/e65100?text=Llajua+Seca",
-      "category": "Especias y condimentos"
-    },
-    {
-      "id": "mix-anchi",
-      "name": "Mix Anchi",
-      "price": 1200,
-      "description": "Harina tostada de maíz. Lista para preparar el postre tradicional. 500g.",
-      "image": "https://placehold.co/400x300/fff8e1/f57f17?text=Mix+Anchi",
-      "category": "Especias y condimentos"
-    },
-    {
-      "id": "caja-regalo-s",
-      "name": "Caja Regalo Pequeña",
-      "price": 5500,
-      "description": "3 productos seleccionados + presentación. Ideal para regalar.",
-      "image": "https://placehold.co/400x300/e8eaf6/283593?text=Caja+Regalo",
-      "category": "Cajas regalo"
-    },
-    {
-      "id": "caja-regalo-l",
-      "name": "Caja Regalo Grande",
-      "price": 9800,
-      "description": "6 productos seleccionados + presentación premium.",
-      "image": "https://placehold.co/400x300/e8eaf6/283593?text=Caja+Premium",
-      "category": "Cajas regalo"
+      "id": "mate",
+      "name": "Mate",
+      "description": "Producto de prueba.",
+      "image": "https://placehold.co/400x300",
+      "price": 1500
     }
   ],
   "productGridConfig": {
     "showPrice": true,
-    "ctaLabel": "Consultar por WhatsApp",
-    "groupByCategory": true
-  },
-  "sections": {
-    "services": {
-      "title": "Nuestros servicios",
-      "subtitle": "Todo lo que necesitás en un solo lugar"
-    },
-    "products": {
-      "title": "Nuestros productos",
-      "subtitle": "Elaborados con ingredientes naturales de la región"
-    },
-    "testimonials": {
-      "title": "Lo que dicen nuestros clientes",
-      "subtitle": "Experiencias reales de personas reales"
-    },
-    "contact": {
-      "title": "Contactanos",
-      "subtitle": "Estamos para ayudarte. Escribinos y te respondemos a la brevedad."
-    }
+    "currency": "ARS",
+    "groupByCategory": false
   }
 }
