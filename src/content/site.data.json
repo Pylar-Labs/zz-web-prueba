@@ -1,18 +1,14 @@
 {
-  "language": "es",
-  "name": "Estudio de Prueba",
-  "tagline": "Segunda publicacion",
-  "description": "Sitio de prueba para verificar la publicación de punta a punta.",
   "hero": {
     "headline": "Publicado desde el panel",
-    "subheadline": "Este texto llegó por un commit del panel al repositorio de la web.",
     "ctaPrimary": {
-      "label": "Contactanos",
-      "href": "#contacto"
-    }
+      "href": "#contacto",
+      "label": "Contactanos"
+    },
+    "subheadline": "Este texto llegó por un commit del panel al repositorio de la web."
   },
+  "name": "Estudio de Prueba",
   "about": {
-    "title": "Quiénes somos",
     "body": "Un negocio de prueba creado para verificar la entrega real.",
     "stats": [
       {
@@ -20,15 +16,27 @@
         "value": "+1"
       }
     ],
+    "title": "Quiénes somos",
     "highlights": [
       "Validado con el contrato 2.3"
     ]
   },
   "contact": {
-    "whatsapp": "5491112345678",
     "email": "prueba@example.com",
-    "phone": "+54 11 1234-5678"
+    "phone": "+54 11 1234-5678",
+    "whatsapp": "5491112345678"
   },
+  "tagline": "Segunda publicacion",
+  "language": "es",
+  "products": [
+    {
+      "id": "mate",
+      "name": "Mate",
+      "image": "https://placehold.co/400x300",
+      "price": 1500,
+      "description": "Producto de prueba."
+    }
+  ],
   "services": [
     {
       "icon": "Star",
@@ -36,6 +44,7 @@
       "description": "Descripción del servicio."
     }
   ],
+  "description": "Sitio de prueba para verificar la publicación de punta a punta.",
   "testimonials": [
     {
       "name": "Ana",
@@ -44,18 +53,9 @@
       "rating": 5
     }
   ],
-  "products": [
-    {
-      "id": "mate",
-      "name": "Mate",
-      "description": "Producto de prueba.",
-      "image": "https://placehold.co/400x300",
-      "price": 1500
-    }
-  ],
   "productGridConfig": {
-    "showPrice": true,
     "currency": "ARS",
+    "showPrice": true,
     "groupByCategory": false
   }
 }
